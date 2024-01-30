@@ -1,4 +1,8 @@
+"use server";
+
+import { Suspense } from "react";
 import { Counter } from "./Counter.js";
+import { Todos } from "./Todos.js";
 
 export function App() {
 	return (
@@ -13,6 +17,10 @@ export function App() {
 					<p>"Hello, world!" from server-side rendered React!</p>
 					<img src="/react-summit.svg" width="128" />
 					<Counter />
+					<Suspense fallback={<p>Loading...</p>}>
+						{/* @ts-expect-error Async Server Component */}
+						<Todos />
+					</Suspense>
 				</div>
 			</body>
 		</html>
